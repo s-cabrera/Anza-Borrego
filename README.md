@@ -3,10 +3,10 @@
 This folder is an installable web app (PWA). It works offline once opened one time.
 
 ## Host it (free, about 5 minutes)
-1. Make a free GitHub account and create a new public repository, for example `anza-trip`.
+1. Make a free GitHub account and create a new public repository, for example `Anza-Borrego`.
 2. Click "Add file" > "Upload files", drag in everything in this folder (keep the `icons` folder), and commit.
 3. Open Settings > Pages. Under "Build and deployment" choose "Deploy from a branch", branch `main`, folder `/ (root)`, and Save.
-4. After a minute your app is live at `https://github.com/s-cabrera/Anza-Borrego`.
+4. After a minute your app is live at [https://s-cabrera.github.io/Anza-Borrego](https://s-cabrera.github.io/Anza-Borrego).
 
 (Netlify Drop at app.netlify.com/drop also works: drag the folder in and it gives you a link.)
 
