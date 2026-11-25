@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Layout plan and checklist for the Anza Borrego stargazing trip, December 4 to 6, 2026.">
+<title>Anza Borrego Stargazing Trip</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0d2461">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Layout idea: a night-sky banner over a white page, then one bordered card per category with checkable rows. */
+  :root {
+    --paper: #ffffff;
+    --ink: #1b2a41;
+    --muted: #66748b;
+    --line: #e3e8f1;
+    --soft: #f5f8fd;
+    --sky-1: #0d2461;
+    --sky-2: #2a64c8;
+    --sky-3: #7dbcf4;
+    --matt: #2a63c4;
+    --steph: #c43d86;
+    --both: #7a52c7;
+    --byo: #2e8b57;
+    --font-display: "Bree Serif", Georgia, "Times New Roman", serif;
+    --font-body: "Nunito Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { color-scheme: light; background: #fff; }
+  body { margin: 0; background: #fff; color: var(--ink); font: 16px/1.5 var(--font-body); -webkit-font-smoothing: antialiased; }
+  .page { max-width: 1000px; margin: 0 auto; padding: 16px 16px 72px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative; overflow: hidden; border-radius: 26px; color: #fff;
+    background: linear-gradient(180deg, var(--sky-1) 0%, #1a47a3 36%, var(--sky-2) 62%, var(--sky-3) 100%);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .starfield { position: absolute; inset: 0; pointer-events: none; }
+  .star { position: absolute; border-radius: 50%; background: #fff; }
+  .star.tw { animation: twinkle 3.6s ease-in-out infinite; }
+  .spark { position: absolute; fill: #fff6cf; transform: translate(-50%, -50%); filter: drop-shadow(0 0 6px rgba(255, 246, 207, .7)); }
+  .spark.tw { animation: twinkle 4.2s ease-in-out infinite; }
+  .moon { position: absolute; right: 6%; top: 6%; width: 46px; height: 46px; border-radius: 50%; box-shadow: inset 13px -7px 0 0 #fff3c4; filter: drop-shadow(0 0 10px rgba(255, 243, 196, .55)); }
+  @keyframes twinkle { 0%, 100% { transform: translate(var(--tx, 0), var(--ty, 0)) scale(1); opacity: 1; } 50% { transform: translate(var(--tx, 0), var(--ty, 0)) scale(.55); opacity: .45; } }
+  .star.tw { --tx: 0; --ty: 0; }
+  .spark.tw { --tx: -50%; --ty: -50%; }
+  .hero-text { position: relative; z-index: 2; text-align: center; padding: 46px 20px 10px; }
+  .eyebrow { margin: 0 0 6px; font-size: 13px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #cfe3ff; }
+  .hero h1 { margin: 0; font: 400 clamp(34px, 7.4vw, 68px)/1.04 var(--font-display); text-wrap: balance; text-shadow: 0 2px 18px rgba(5, 15, 50, .55); }
+  .dates { margin: 12px 0 0; font-size: 16px; font-weight: 700; color: #e6f1ff; }
+  .scene { position: relative; z-index: 1; display: block; width: 100%; height: auto; margin-top: 6px; }
+  .flame { transform-box: fill-box; transform-origin: 50% 100%; animation: flicker 1.6s ease-in-out infinite; }
+  .flame.f2 { animation-duration: 1.15s; animation-delay: -.4s; }
+  @keyframes flicker { 0%, 100% { transform: scale(1, 1); } 40% { transform: scale(.94, 1.07); } 70% { transform: scale(1.04, .95); } }
+
+  /* ---------- Toolbar ---------- */
+  .toolbar { position: sticky; top: 0; z-index: 30; margin: 14px -16px 22px; padding: 10px 16px; background: rgba(255, 255, 255, .95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); display: grid; gap: 10px; }
+  .progress-row { display: flex; align-items: center; gap: 12px; }
+  .progress-label { font-size: 14px; font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .bar { flex: 1; height: 10px; border-radius: 99px; background: #e9eef7; overflow: hidden; min-width: 60px; }
+  .bar > span { display: block; height: 100%; width: 0; border-radius: 99px; background: linear-gradient(90deg, #2a64c8, #f08a24); transition: width .25s ease; }
+  .reset { font: inherit; font-size: 13px; font-weight: 700; color: var(--muted); background: #fff; border: 1px solid var(--line); border-radius: 99px; padding: 5px 12px; cursor: pointer; white-space: nowrap; }
+  .reset:hover { border-color: #b9c4d8; color: var(--ink); }
+  .reset.armed { background: #fff1ee; border-color: #f0b3a6; color: #b23a22; }
+  .chips { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: thin; }
+  .chips a { flex: none; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--ink); font-size: 14px; font-weight: 700; padding: 6px 12px 6px 8px; border-radius: 99px; border: 1px solid var(--line); background: #fff; }
+  .chips a:hover { background: var(--soft); }
+  .chips .ic { width: 18px; height: 18px; color: var(--c); }
+
+  /* ---------- Cards ---------- */
+  main { display: grid; gap: 22px; }
+  .card { --cs: color-mix(in srgb, var(--c) 13%, #fff); background: #fff; border: 1px solid var(--line); border-top: 5px solid var(--c); border-radius: 20px; padding: 22px; box-shadow: 0 10px 28px -20px rgba(20, 40, 80, .35); scroll-margin-top: 130px; }
+  .card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .badge { flex: none; width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: var(--cs); color: var(--c); }
+  .badge .ic { width: 30px; height: 30px; }
+  .card h2 { margin: 0; font: 400 clamp(23px, 4.4vw, 30px)/1.15 var(--font-display); text-wrap: balance; }
+  .card-note { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+  .ic { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ---------- Meal plan ---------- */
+  .dayhead { display: flex; align-items: center; gap: 10px; margin: 22px 0 10px; flex-wrap: wrap; }
+  .dayhead:first-of-type { margin-top: 6px; }
+  .daynum { width: 34px; height: 34px; border-radius: 50%; background: var(--c); color: #fff; display: grid; place-items: center; font: 400 18px/1 var(--font-display); }
+  .dayhead h3 { margin: 0; font: 400 21px/1.2 var(--font-display); }
+  .date { color: var(--muted); font-weight: 700; font-size: 14px; }
+  .meals { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+  .meal { background: var(--soft); border: 1px solid var(--line); border-radius: 16px; padding: 12px 10px 8px; }
+  .meal h4 { margin: 0 6px 6px; font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--c); }
+  .meal h4 span { text-transform: none; letter-spacing: 0; color: var(--ink); font-size: 15px; font-weight: 800; }
+  .subhead { display: flex; align-items: center; gap: 10px; margin: 24px 0 10px; }
+  .subhead .ic { width: 26px; height: 26px; color: var(--c); }
+  .subhead h3 { margin: 0; font: 400 21px/1.2 var(--font-display); }
+
+  /* ---------- Lists and checkbox rows ---------- */
+  .list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); column-gap: 22px; row-gap: 1px; }
+  .list.one { grid-template-columns: 1fr; }
+  .list.nested { margin: 0 0 4px 34px; grid-template-columns: 1fr; }
+  .item { position: relative; display: flex; align-items: flex-start; gap: 10px; padding: 7px 8px; border-radius: 10px; cursor: pointer; }
+  .item:hover { background: color-mix(in srgb, var(--c) 7%, #fff); }
+  .item input { position: absolute; left: 8px; top: 7px; width: 22px; height: 22px; margin: 0; opacity: 0; cursor: pointer; }
+  .box { flex: none; width: 22px; height: 22px; margin-top: 1px; border: 2px solid #b5c0d3; border-radius: 7px; background: #fff; display: grid; place-items: center; transition: background .12s, border-color .12s; }
+  .box::after { content: ""; width: 6px; height: 11px; border: solid #fff; border-width: 0 2.5px 2.5px 0; transform: translate(0, -1px) rotate(45deg); opacity: 0; }
+  .item input:checked + .box { background: var(--c); border-color: var(--c); }
+  .item input:checked + .box::after { opacity: 1; }
+  .item input:focus-visible + .box { outline: 3px solid color-mix(in srgb, var(--c) 45%, #fff); outline-offset: 2px; }
+  .txt { flex: 1; min-width: 0; line-height: 1.35; padding-top: 2px; }
+  .nm { font-weight: 700; }
+  .q { color: var(--muted); font-weight: 600; }
+  .why { display: block; margin-top: 1px; font-size: 13px; color: var(--muted); font-weight: 400; }
+  .need { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #a5481c; background: #ffeede; padding: 1px 7px; border-radius: 99px; margin-right: 4px; text-decoration: none; }
+  .unk { display: inline-block; font-size: 11px; font-weight: 800; color: #8a5a00; background: #fff3cf; padding: 1px 7px; border-radius: 99px; text-decoration: none; }
+  .tag { flex: none; align-self: flex-start; margin-top: 3px; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 99px; white-space: nowrap; background: #eef2f8; color: #4a5a74; }
+  .t-gs { background: #e3f5e9; color: #1f7a3f; }
+  .t-tg { background: #fde6e4; color: #b3261e; }
+  .t-home { background: #e8eefc; color: #2f4fa8; }
+  .t-ma { background: #e1ecff; color: var(--matt); }
+  .t-opt { background: #f1eaff; color: var(--both); }
+  /* checked: strike the text and fade the tags */
+  .item input:checked ~ .txt { text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: var(--c); }
+  .item input:checked ~ .txt, .item input:checked ~ .txt * { color: #9aa5b8; }
+  .item input:checked ~ .tag { opacity: .45; }
+
+  /* ---------- Grocery ---------- */
+  .store { margin-top: 18px; }
+  .store:first-of-type { margin-top: 4px; }
+  .store-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; padding-bottom: 8px; border-bottom: 2px dashed color-mix(in srgb, var(--c) 28%, #fff); }
+  .store-head .ic { width: 26px; height: 26px; color: var(--c); }
+  .store-head h3 { margin: 0; font: 400 21px/1.2 var(--font-display); }
+  .count { margin-left: auto; font-size: 13px; font-weight: 700; color: var(--muted); }
+  .store-note { margin: 0 0 6px; color: var(--muted); font-size: 14px; }
+
+  /* ---------- Supplies ---------- */
+  .band { margin-top: 10px; padding: 4px 2px 0; }
+  .band h2 { margin: 0; font: 400 clamp(26px, 5vw, 34px)/1.15 var(--font-display); }
+  .band p { margin: 4px 0 12px; color: var(--muted); }
+  .legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+  .legend div { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 14px; font-size: 14px; }
+  .pill { flex: none; display: inline-block; padding: 3px 12px; border-radius: 99px; font-size: 13px; font-weight: 800; color: #fff; background: var(--oc); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .o-matt { --oc: var(--matt); } .o-steph { --oc: var(--steph); } .o-both { --oc: var(--both); } .o-byo { --oc: var(--byo); }
+  .ogroup { margin-top: 18px; padding-left: 14px; border-left: 4px solid color-mix(in srgb, var(--oc) 38%, #fff); break-inside: avoid; }
+  .owner { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .owner h3 { margin: 0; font-size: 16px; font-weight: 800; }
+
+  .ai-group { margin-top: 20px; }
+  .ai-group:first-of-type { margin-top: 4px; }
+  .ai-group h3 { margin: 0; font: 400 20px/1.25 var(--font-display); }
+  .ai-group .card-note { margin-bottom: 6px; }
+  footer { margin-top: 30px; text-align: center; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 520px) {
+    .card { padding: 16px 14px; border-radius: 18px; }
+    .badge { width: 46px; height: 46px; }
+    .toolbar .progress-label { font-size: 13px; }
+    .tag { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .star.tw, .spark.tw, .flame { animation: none; }
+    .bar > span, .box { transition: none; }
+  }
+  @media print {
+    .toolbar { display: none; }
+    .card { box-shadow: none; break-inside: auto; }
+    .meal, .ogroup, .store { break-inside: avoid; }
+    .star.tw, .spark.tw, .flame { animation: none; }
+    .tag { display: inline-block; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Icon library (outline icons, drawn on a 24px grid) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <g id="i-grill"><path d="M3 10h18a9 9 0 0 1-18 0z"/><path d="M8.5 19.5 6.5 22.5M15.5 19.5l2 3"/><path d="M8 3v3M12 2v4M16 3v3"/></g>
+    <g id="i-cart"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5H5l2.3 11.2a1 1 0 0 0 1 .8h9.3a1 1 0 0 0 1-.8L20 7H6"/></g>
+    <g id="i-mug"><path d="M4 9h12v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3v3M12 3v3"/></g>
+    <g id="i-cookie"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="14.5" cy="8" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="13.5" r="1" fill="currentColor" stroke="none"/><circle cx="9" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="12.5" cy="17" r=".9" fill="currentColor" stroke="none"/></g>
+    <g id="i-pot"><path d="M5 10a7 5 0 0 1 14 0"/><path d="M12 3v2"/><path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M2 12.5h2M20 12.5h2"/></g>
+    <g id="i-tent"><path d="M12 3 2 20h20z"/><path d="M9 20l3-6 3 6"/></g>
+    <g id="i-drop"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/><path d="M9 14.5a3 3 0 0 0 3 3"/></g>
+    <g id="i-shirt"><path d="M8 3 3 6l2 4 3-1v12h8V9l3 1 2-4-5-3a4 4 0 0 1-8 0z"/></g>
+    <g id="i-compass"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></g>
+    <g id="i-sparkles"><path d="M11 3l1.8 5.2L18 10l-5.2 1.8L11 17l-1.8-5.2L4 10l5.2-1.8z"/><path d="M19 15l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></g>
+    <g id="i-target"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></g>
+    <g id="i-house"><path d="M3 11l9-8 9 8"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-6h4v6"/></g>
+    <path id="sparkle-shape" d="M12 0C12.8 7 17 11.2 24 12 17 12.8 12.8 17 12 24 11.2 17 7 12.8 0 12 7 11.2 11.2 7 12 0z"/>
+  </defs>
+</svg>
+
+<div class="page">
+
+  <!-- ===== Title: sky, stars, tent, campfire, chairs and trees ===== -->
+  <header class="hero">
+    <div class="starfield" id="starfield"><div class="moon"></div></div>
+    <div class="hero-text">
+      <p class="eyebrow">Layout plan &amp; checklist</p>
+      <h1>Anza Borrego Stargazing Trip</h1>
+      <p class="dates">Friday 12/04/2026 to Sunday 12/06/2026 &nbsp;·&nbsp; Matt &amp; Steph</p>
+    </div>
+
+    <svg class="scene" viewBox="0 0 1000 290" role="img" aria-label="A tent, a campfire with two camp chairs around it, and pine trees under the night sky">
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0" stop-color="#ffb347" stop-opacity=".62"/>
+          <stop offset="1" stop-color="#ffb347" stop-opacity="0"/>
+        </radialGradient>
+        <g id="pine">
+          <rect x="-5" y="-14" width="10" height="16" fill="#3a2a1e"/>
+          <path d="M0 -112 L26 -70 L12 -70 L34 -38 L14 -38 L40 -10 L-40 -10 L-14 -38 L-34 -38 L-12 -70 L-26 -70Z" style="fill:var(--t1,#0f3f33)"/>
+          <path d="M0 -112 L26 -70 L12 -70 L34 -38 L14 -38 L40 -10 L0 -10Z" style="fill:var(--t2,#17624c)"/>
+        </g>
+        <g id="chair">
+          <path d="M488 228 L530 264 M530 228 L488 264" stroke="#141c36" stroke-width="4" stroke-linecap="round" fill="none"/>
+          <path d="M486 226 L470 172" stroke-width="11" stroke-linecap="round" fill="none" style="stroke:var(--chair)"/>
+          <rect x="482" y="220" width="48" height="9" rx="4.5" style="fill:var(--chair)"/>
+          <path d="M476 197 L522 206 L525 222" stroke="#141c36" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </defs>
+
+      <!-- distant desert mountains -->
+      <path d="M0 238 L110 188 L205 232 L320 196 L430 238 L560 200 L690 240 L800 192 L900 232 L1000 205 V280 H0Z" fill="#1d4ba3" opacity=".7"/>
+      <path d="M0 252 L90 222 L180 250 L300 226 L420 252 L540 230 L660 252 L780 224 L900 250 L1000 230 V280 H0Z" fill="#163c86" opacity=".9"/>
+      <!-- far trees -->
+      <use href="#pine" transform="translate(432 254) scale(.62)" style="--t1:#15407a;--t2:#1c5199"/>
+      <use href="#pine" transform="translate(744 254) scale(.7)" style="--t1:#15407a;--t2:#1c5199"/>
+      <use href="#pine" transform="translate(255 252) scale(.5)" style="--t1:#15407a;--t2:#1c5199"/>
+      <!-- ground -->
+      <path d="M0 252 Q250 246 500 252 T1000 250 V290 H0Z" fill="#0b1c42"/>
+      <ellipse cx="585" cy="268" rx="190" ry="14" fill="#f5a03a" opacity=".16"/>
+      <circle cx="585" cy="232" r="125" fill="url(#glow)"/>
+
+      <!-- front trees, left and right -->
+      <use href="#pine" transform="translate(40 268) scale(1.55)"/>
+      <use href="#pine" transform="translate(118 266) scale(1.15)"/>
+      <use href="#pine" transform="translate(180 264) scale(.8)"/>
+      <use href="#pine" transform="translate(960 268) scale(1.55)"/>
+      <use href="#pine" transform="translate(882 266) scale(1.2)"/>
+      <use href="#pine" transform="translate(818 264) scale(.82)"/>
+
+      <!-- tent -->
+      <g>
+        <path d="M300 172 V156" stroke="#d7dde8" stroke-width="2"/>
+        <path d="M300 156 l16 5 -16 5z" fill="#e5566d"/>
+        <path d="M213 266 L300 172 L300 266Z" fill="#f4b560"/>
+        <path d="M300 172 L387 266 L300 266Z" fill="#e48a3b"/>
+        <path d="M213 266 L300 172 L387 266" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="2"/>
+        <path d="M274 266 L300 208 L326 266Z" fill="#2f2018"/>
+        <path d="M283 266 L300 226 L317 266Z" fill="#ffcf70" opacity=".4"/>
+        <path d="M300 208 V266" stroke="#000" stroke-opacity=".25"/>
+        <path d="M232 244 L198 270 M368 244 L402 270" stroke="#cbd5e8" stroke-width="1.4" opacity=".8"/>
+        <path d="M196 272 l5 -6 M404 272 l-5 -6" stroke="#cbd5e8" stroke-width="2.2" stroke-linecap="round"/>
+      </g>
+
+      <!-- two camp chairs facing the fire -->
+      <use href="#chair" style="--chair:#1fb0a8"/>
+      <use href="#chair" transform="translate(1170 0) scale(-1 1)" style="--chair:#e5566d"/>
+
+      <!-- campfire -->
+      <g>
+        <g fill="#59616f">
+          <ellipse cx="548" cy="266" rx="10" ry="5.5"/><ellipse cx="566" cy="270" rx="9" ry="5"/>
+          <ellipse cx="604" cy="270" rx="9" ry="5"/><ellipse cx="622" cy="266" rx="10" ry="5.5"/>
+        </g>
+        <rect x="-36" y="-6" width="72" height="12" rx="6" transform="translate(585 262) rotate(-13)" fill="#5a3a22"/>
+        <rect x="-36" y="-6" width="72" height="12" rx="6" transform="translate(585 262) rotate(13)" fill="#6f4829"/>
+        <g class="flame">
+          <path d="M585 194 C598 216 616 228 612 248 C609 264 561 264 558 248 C554 229 572 221 585 194Z" fill="#f5821f"/>
+        </g>
+        <g class="flame f2">
+          <path d="M585 214 C594 227 604 234 601 249 C599 259 571 259 569 249 C567 237 577 231 585 214Z" fill="#ffc247"/>
+          <path d="M585 233 C590 240 594 244 592 251 C591 257 579 257 578 251 C577 245 581 241 585 233Z" fill="#fff1b8"/>
+        </g>
+        <g fill="#ffd166"><circle cx="604" cy="190" r="2"/><circle cx="571" cy="182" r="1.6"/><circle cx="591" cy="168" r="1.4"/><circle cx="612" cy="176" r="1.2"/></g>
+      </g>
+    </svg>
+  </header>
+
+  <!-- ===== Sticky progress and jump links ===== -->
+  <div class="toolbar">
+    <div class="progress-row">
+      <span class="progress-label" id="progressLabel">0 of 0 checked</span>
+      <div class="bar" aria-hidden="true"><span id="progressFill"></span></div>
+      <button class="reset" id="resetBtn" type="button">Clear checks</button>
+    </div>
+    <nav class="chips" id="chips" aria-label="Sections"></nav>
+  </div>
+
+  <main id="app"></main>
+
+  <footer>Tap any row to check it off. Checks stay on this device.</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ================= Content ================= */
+  var I = function (n, q, o) { var r = { n: n, q: q || "" }; if (o) { for (var k in o) r[k] = o[k]; } return r; };
+
+  var DAYS = [
+    { num: 1, day: "Day 1", date: "Friday (12/04/2026)", meals: [
+      { title: "Dinner", items: [
+        I("Large shrimp skewers", "1 lb (approx. 20)", { tag: "Grocery Store" }),
+        I("Grilled zucchini", "×1", { tag: "Grocery Store" }),
+        I("White rice", "×2", { tag: "Target" }),
+        I("Wood skewers", "", { tag: "Target", need: true })
+      ]},
+      { title: "Dessert", sub: "S’mores", items: [
+        I("Graham crackers", "", { tag: "Grocery Store" }),
+        I("Chocolate bars", "×4", { tag: "Grocery Store" }),
+        I("Marshmallows", "×6", { tag: "Grocery Store" }),
+        I("Metal skewers", "", { tag: "Home", need: true })
+      ]}
+    ]},
+    { num: 2, day: "Day 2", date: "Saturday (12/05/2026)", meals: [
+      { title: "Breakfast", sub: "Egg and Sausage Delight", items: [
+        I("Scrambled eggs", "×2 each", { tag: "Grocery Store" }),
+        I("Sausage patties", "×2 each", { tag: "Target" }),
+        I("Large avocado", "×1", { tag: "Grocery Store" }),
+        I("Ketchup packets", "", { tag: "Matthew" }),
+        I("Shredded cheese", "", { tag: "Grocery Store" })
+      ]},
+      { title: "Lunch", sub: "Mac and Cheese with add ins", items: [
+        I("White rice", "×2", { tag: "Target" }),
+        I("Spam", "×1 can", { tag: "Target" }),
+        I("Soy sauce", "", { tag: "Home" }),
+        I("Brown sugar", "", { tag: "Home" }),
+        I("Fried egg", "", { tag: "Home" }),
+        I("Avocado", "×1", { tag: "Grocery Store" })
+      ]},
+      { title: "Dinner", sub: "Hobo Dinner", items: [
+        I("Cubed potato", "×2", { tag: "Grocery Store" }),
+        I("Cubed sausage patties", "×2", { tag: "Target" }),
+        I("Cubed Spam", "×1 can", { tag: "Target" }),
+        I("Cut baby carrots", "×4", { tag: "Grocery Store" }),
+        I("Diced zucchini", "×1", { tag: "Grocery Store" }),
+        I("Shredded cheese", "", { tag: "Grocery Store" }),
+        I("Seasoning", "", { tag: "Target" })
+      ]},
+      { title: "Dessert", sub: "Grilled Peaches", items: [
+        I("Grilled peaches", "", { tag: "Grocery Store" }),
+        I("Brown sugar / honey", "", { tag: "Home" }),
+        I("Cooking spray", "", { tag: "Target", need: true })
+      ]}
+    ]},
+    { num: 3, day: "Day 3", date: "Sunday (12/06/2026)", meals: [
+      { title: "Breakfast", sub: "Ube Pancake and Sausage Delight", items: [
+        I("Sausage patties", "×2 each", { tag: "Target" }),
+        I("Ube pancakes", "×2 each", { tag: "Home" }),
+        I("Cooked frozen blueberries", "", { tag: "Target" }),
+        I("Brown sugar or honey", "", { tag: "Home" }),
+        I("Avocado", "×1", { tag: "Grocery Store" })
+      ]}
+    ]}
+  ];
+
+  var DRINKS = [
+    { title: "Mama Wang’s Peppermint Matcha", sub: "4 servings", items: [
+      I("Matcha powder", "", { tag: "Home" }),
+      I("Brown sugar / honey", "", { tag: "Home" }),
+      I("Half and half", "", { tag: "Grocery Store" })
+    ]},
+    { title: "Latte", sub: "3 servings", items: [
+      I("Golden espresso powder", "", { tag: "Home" }),
+      I("Brown sugar / honey", "", { tag: "Home" }),
+      I("Half and half", "", { tag: "Grocery Store" }),
+      I("Pumpkin spice", "", { tag: "Home" })
+    ]},
+    { title: "Tea", sub: "6 servings", items: [
+      I("Mama Wang tea or tea bags", "×6 servings", { tag: "Home" })
+    ]}
+  ];
+
+  var SNACKS = [ I("Choose your favorite packaged snacks", "(chips, trail mix, etc.)") ];
+
+  var GROCERY = [
+    { icon: "i-cart", title: "Grocery Store", note: "", items: [
+      I("Large shrimp", "1 lb (approx. 20)", { why: "Day 1 dinner, shrimp skewers" }),
+      I("Zucchini", "×2", { why: "1 grilled (Day 1 dinner) + 1 diced (Day 2 hobo dinner)" }),
+      I("Graham crackers", "", { unk: true, why: "Day 1 s’mores" }),
+      I("Chocolate bars", "×4", { why: "Day 1 s’mores" }),
+      I("Marshmallows", "×6", { why: "Day 1 s’mores" }),
+      I("Eggs", "×4", { why: "Day 2 breakfast, scrambled, 2 each" }),
+      I("Avocados", "×3", { why: "1 Day 2 breakfast (large) + 1 Day 2 lunch + 1 Day 3 breakfast" }),
+      I("Shredded cheese", "", { unk: true, why: "Day 2 breakfast + Day 2 hobo dinner" }),
+      I("Potatoes, cubed", "×2", { why: "Day 2 hobo dinner" }),
+      I("Baby carrots, cut", "×4", { why: "Day 2 hobo dinner" }),
+      I("Peaches", "", { unk: true, why: "Day 2 grilled peaches" }),
+      I("Half and half", "7 servings", { why: "Day 3 matcha (4 servings) + latte (3 servings)" }),
+      I("Water gallons", "×4", { why: "Steph’s survival supplies" })
+    ]},
+    { icon: "i-target", title: "Target", note: "", items: [
+      I("White rice", "×4", { why: "2 for Day 1 dinner + 2 for Day 2 lunch" }),
+      I("Sausage patties", "×10", { why: "Day 2 breakfast (2 each = 4) + Day 2 hobo dinner (2) + Day 3 breakfast (2 each = 4)" }),
+      I("Spam", "×2 cans", { why: "1 for Day 2 lunch + 1 for Day 2 hobo dinner" }),
+      I("Cooked frozen blueberries", "", { unk: true, why: "Day 3 breakfast" }),
+      I("Wood skewers", "", { why: "Day 1 shrimp skewers" }),
+      I("Seasoning", "", { why: "Day 2 hobo dinner" }),
+      I("Cooking spray", "", { why: "Day 2 grilled peaches" })
+    ]},
+    { icon: "i-house", title: "From home", note: "Already in the pantry or the freezer. Pack these, no need to buy.", items: [
+      I("Soy sauce", "", { why: "Day 2 lunch" }),
+      I("Brown sugar / honey", "", { why: "Day 2 lunch, grilled peaches, Day 3 pancakes, matcha and latte" }),
+      I("Eggs, for frying", "", { why: "Day 2 lunch, fried egg" }),
+      I("Ube pancakes", "×4", { why: "Day 3 breakfast, 2 each" }),
+      I("Matcha powder", "4 servings", { why: "Day 3 matcha" }),
+      I("Golden espresso powder", "3 servings", { why: "Day 3 latte" }),
+      I("Pumpkin spice", "", { why: "Day 3 latte" }),
+      I("Mama Wang tea or tea bags", "6 servings", { why: "Day 3 drinks" }),
+      I("Ketchup packets", "", { why: "Day 2 breakfast, Matthew has these" })
+    ]}
+  ];
+
+  var COOKING = {
+    matt: [
+      I("Grill, grill cleaning"), I("Propane", "×2 tanks"), I("Lighter"), I("Frying pans", "×2"),
+      I("Sponge", "×1"), I("Dish soap"), I("Mini whisk", "×1"), I("Tongs w/ metal tips", "×1"),
+      I("Firewood"),
+      I("Dollar Tree table covers", "×2", { sub: [
+        I("Might use the picnic blanket as cover", "(pending)"),
+        I("Clamps for tablecloths", "(if needed)")
+      ]}),
+      I("Spatula, plastic"), I("Aluminum foil"), I("Cutting board, small plastic", "×1"), I("Cooler", "×1")
+    ],
+    steph: [
+      I("Cooking pots w/ lid", "×2"), I("Utensils", "knives ×2, spoons ×4, forks ×2"),
+      I("Plastic plate bowls", "×4"), I("Metal skewers", "×1 bag"), I("Chopsticks", "×2"),
+      I("Oven mittens", "×2"), I("Kitchen cotton towels", "×6"), I("Paper towels", "×1"),
+      I("Mini wood"), I("Mesa Solo XL w/ accessories"), I("Square table"), I("Trash bags", "×5"),
+      I("Gallon Ziploc bags"), I("Frozen water bottles for cooler", "×10")
+    ],
+    both: [ I("BYO mugs"), I("BYO water bottles") ]
+  };
+
+  var SHELTER = {
+    matt: [
+      I("Tent"), I("Sleeping mattress + pump"), I("Stakes"), I("Entrance rug"),
+      I("Dust pan"), I("Rope"), I("Mallet")
+    ],
+    steph: [ I("Tarp") ],
+    both: [ I("Sleeping bags", "×2", { why: "No owner listed in the plan" }) ],
+    byo: [ I("Blankets", "×2 each"), I("Pillows", "×1 each") ]
+  };
+
+  var HYGIENE = {
+    steph: [ I("Baby wipes", "×1 pack"), I("Hand soap") ],
+    both: [ I("Toilet paper", "×3", { why: "Either of us can bring it" }) ],
+    byo: [
+      I("Travel toothpaste"), I("Travel toothbrush"), I("Floss"), I("Sunscreen"), I("Face wash"),
+      I("Lotion"), I("Shower gloves"), I("Body towel"), I("Shower tokens"),
+      I("Emergency feminine hygiene products")
+    ]
+  };
+
+  var CLOTHING = {
+    byo: [
+      I("Sweaters", "×2 (grey fleece and your choice)"), I("Long sleeves", "×2"), I("Sweatpants", "×2"),
+      I("Leggings", "×2", { tag: "Optional" }), I("Pairs of socks", "×4"),
+      I("Pairs of hiking socks", "×2 (Darn Tough)"), I("Underwear", "×4"),
+      I("Sleeping PJ pants", "×1", { tag: "Optional" }), I("Sleeping long sleeve", "×1", { tag: "Optional" }),
+      I("Beanie", "×1"), I("Gloves, pair w/ tech tips", "×1"), I("Scarf", "×1"), I("Sunglasses", "×1"),
+      I("Glasses towel", "×1"), I("Duffle bag for clothes", "×1"), I("Pair of hiking boots / shoes", "×1"),
+      I("Pair of slippers", "×1")
+    ]
+  };
+
+  var SURVIVAL = {
+    steph: [ I("Hiking speaker"), I("Water gallons", "×4", { tag: "Grocery Store" }) ],
+    byo: [ I("Flashlights"), I("Backpacks"), I("Battery packs"), I("Charging cables"), I("Medical kit"), I("Snacks") ]
+  };
+
+  var AI = [
+    { title: "1. Shelter & Sleeping System", note: "High priority for desert nights dropping into the 40s°F", items: [
+      ["Tent & Footprint:", "Tent body, rainfly (even without rain, it traps body heat and blocks desert wind), stakes, guylines, and ground tarp/footprint."],
+      ["Sleeping Pad:", "Your inflatable double sleeping pad + pump/inflation sack (and patch kit)."],
+      ["Sleeping Bags / Bedding:", "Cold-weather sleeping bags (rated ~20°F–30°F for comfort) or layered blankets/quilts."],
+      ["Pillows:", "Camp pillows or pillowcases stuffed with extra jackets (or a thin pad if sleeping nearly flat)."],
+      ["Tent Accessories:", "Small doormat/rug outside tent entrance (keeps desert sand out), tent mallet/stake puller, and a dustpan/brush."]
+    ]},
+    { title: "2. Camp Kitchen & Cooking Gear", note: "Building on your existing group list", items: [
+      ["Heat & Fuel:", "Coleman 2-burner stove, propane cylinders, matches/long-neck lighter, and firewood (~4 bundles total for 2 nights) + firestarters."],
+      ["Cookware:", "2 pots, 2 pans, grill grate + grill brush, and a pot holder/silicone trivet."],
+      ["Prep & Cooking Utensils:", "2 knives, cutting board, spatula/turner, tongs, mini whisk, large serving spoon, can/bottle opener, and marshmallow roasting sticks."],
+      ["Tableware & Hydration:", "4 plastic plates/bowls, 4+ forks, 4 spoons, chopsticks, personal mugs, personal water bottles, and a large 2–5 gallon water jug for refilling."],
+      ["Food Storage & Prep Wrap:", "Cooler + block/cubed ice, aluminum foil, Ziploc bags, and airtight dry-food bins (for coyote/raven-proofing)."],
+      ["Camp Furniture & Setup:", "Folding camp table, 2 table cover sheets + tablecloth clips (essential for desert wind), and camp chairs."],
+      ["Dishwashing & Cleanup:", "Collapsible wash basin, greywater food strainer, biodegradable camp soap, sponge, kitchen wash towels, paper towels, oven mitts, and 4–5 heavy-duty trash bags."]
+    ]},
+    { title: "3. Clothing & Footwear (Cold-Weather Desert Layering)", note: "Temperatures swing from sunny 60s–70s°F by day to chilly 40s°F after 4:40 PM sunset", items: [
+      ["Base Layers:", "Moisture-wicking tops and thermal bottoms (2–3 layers for nighttime stargazing)."],
+      ["Mid-Layers:", "Fleece jacket (like your Columbia fleece) or light puffy/insulated jacket."],
+      ["Outer Shell:", "Windproof/insulated jacket for evening breezes."],
+      ["Bottoms:", "Hiking pants/shorts for daytime, warm sweatpants/fleece pants for camp at night."],
+      ["Head, Hands & Neck:", "Warm beanie, lightweight gloves, neck gaiter/buff, and a sun hat/cap for daytime hikes."],
+      ["Socks & Footwear:", "Trail/hiking shoes, slip-on camp shoes/sandals for midnight bathroom runs, and wool hiking socks (Darn Tough merino socks + thicker sleeping socks)."]
+    ]},
+    { title: "4. Lighting & Stargazing Gear", note: "", items: [
+      ["Personal Lighting:", "Headlamps (ideally with a red-light mode to preserve night vision for stargazing) + spare batteries."],
+      ["Camp Area Lighting:", "Lantern or string lights for the camp table."],
+      ["Astronomy & Optics:", "10x50 binoculars, star chart/astronomy app (downloaded offline), and reclining camp chairs or a ground blanket for looking up."]
+    ]},
+    { title: "5. Hygiene, First Aid & Personal Care", note: "", items: [
+      ["First Aid Kit:", "Bandages, antiseptic wipes, blister care (moleskin/leukotape), pain relievers, antihistamines, and tweezers/comb (crucial in Anza-Borrego for removing cholla cactus spines)."],
+      ["Bathroom & Shower:", "Quarter coins or camp shower tokens (check if Borrego Palm Canyon showers require quarters/tokens), quick-dry towel, shower flip-flops, toiletries, and backup toilet paper."],
+      ["Personal & Sun Protection:", "Sunscreen, lip balm with SPF, sunglasses, wet wipes/hand sanitizer, and daily supplements/medications."],
+      ["Security Rule:", "A dedicated toiletry tote/bag that locks inside your vehicle with the food at night (coyotes and raccoons target scented lotions and toothpaste)."]
+    ]},
+    { title: "6. Tools, Navigation & Camp Utility", note: "", items: [
+      ["Navigation & Safety:", "Offline maps downloaded (AllTrails / Google Maps), park reservation confirmation, and physical ID/park pass."],
+      ["General Utility:", "Multi-tool/pocket knife, paracord/rope, duct tape, bungee cords, and microfiber towels."],
+      ["Electronics & Power:", "Portable power bank, charging cables, and car charger."],
+      ["Vehicle Emergency Gear:", "Your Tinkr 4-in-1 jump starter/air inflator (already in your trunk) and tire pressure gauge."]
+    ]}
+  ];
+
+  /* ================= State ================= */
+  var KEY = "anza-borrego-trip-checks-v1";
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  /* ================= Rendering ================= */
+  var TAGCLS = { "Grocery Store": "t-gs", "Target": "t-tg", "Home": "t-home", "Matthew": "t-ma", "Optional": "t-opt" };
+  var uid = 0;
+
+  function icon(id) { return '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#' + id + '"/></svg>'; }
+
+  function rowHTML(sec, it) {
+    var id = sec + "-" + (uid++);
+    var html = '<label class="item"><input type="checkbox" data-id="' + id + '"' + (state[id] ? " checked" : "") + '>' +
+      '<span class="box" aria-hidden="true"></span><span class="txt">' +
+      (it.need ? '<span class="need">Need</span>' : "") +
+      '<span class="nm">' + it.n + '</span>' +
+      (it.q ? ' <span class="q">' + it.q + '</span>' : "") +
+      (it.unk ? ' <span class="unk">qty?</span>' : "") +
+      (it.why ? '<small class="why">' + it.why + '</small>' : "") +
+      '</span>' +
+      (it.tag ? '<span class="tag ' + (TAGCLS[it.tag] || "") + '">' + it.tag + '</span>' : "") +
+      '</label>';
+    if (it.sub) {
+      html += '<ul class="list nested">' + it.sub.map(function (s) { return '<li>' + rowHTML(sec, s) + '</li>'; }).join("") + '</ul>';
+    }
+    return html;
+  }
+
+  function listHTML(sec, items, cls) {
+    return '<ul class="list ' + (cls || "") + '">' + items.map(function (it) { return '<li>' + rowHTML(sec, it) + '</li>'; }).join("") + '</ul>';
+  }
+
+  function card(id, ico, title, note, color, body) {
+    return '<section class="card" id="' + id + '" style="--c:' + color + '">' +
+      '<div class="card-head"><div class="badge">' + icon(ico) + '</div><div><h2>' + title + '</h2>' +
+      (note ? '<p class="card-note">' + note + '</p>' : "") + '</div></div>' + body + '</section>';
+  }
+
+  function mealBlock(sec, m) {
+    return '<div class="meal"><h4>' + m.title + (m.sub ? ': <span>' + m.sub + '</span>' : "") + '</h4>' + listHTML(sec, m.items, "one") + '</div>';
+  }
+
+  function mealPlan() {
+    var sec = "meal", out = "";
+    DAYS.forEach(function (d) {
+      out += '<div class="dayhead"><span class="daynum">' + d.num + '</span><h3>' + d.day + '</h3><span class="date">' + d.date + '</span></div>';
+      out += '<div class="meals">' + d.meals.map(function (m) { return mealBlock(sec, m); }).join("") + '</div>';
+    });
+    out += '<div class="subhead">' + icon("i-mug") + '<h3>Drinks</h3></div>';
+    out += '<div class="meals">' + DRINKS.map(function (m) {
+      return '<div class="meal"><h4>' + m.title + ' <span>(' + m.sub + ')</span></h4>' + listHTML(sec, m.items, "one") + '</div>';
+    }).join("") + '</div>';
+    out += '<div class="subhead">' + icon("i-cookie") + '<h3>Snacks</h3></div>' + listHTML(sec, SNACKS, "one");
+    return card("sec-meal", "i-grill", "Meal Plan", "Fri 12/04 dinner through Sun 12/06 breakfast. Tags show where each item comes from.", "#d9661a", out);
+  }
+
+  function groceryCard() {
+    var body = "";
+    GROCERY.forEach(function (s) {
+      body += '<div class="store"><div class="store-head">' + icon(s.icon) + '<h3>' + s.title + '</h3><span class="count">' + s.items.length + ' items</span></div>' +
+        (s.note ? '<p class="store-note">' + s.note + '</p>' : "") + listHTML("groc-" + s.title.charAt(0), s.items) + '</div>';
+    });
+    return card("sec-grocery", "i-cart", "Grocery List",
+      "Totals add up every recipe in the meal plan for 2 people (“each” = ×2). A “qty?” tag means the plan gives no amount.", "#2f8a4f", body);
+  }
+
+  var OWNERS = [
+    ["matt", "Matt", "Matt will bring"],
+    ["steph", "Steph", "Steph will bring"],
+    ["both", "Both", "Both of us"],
+    ["byo", "BYO", "Bring your own"]
+  ];
+
+  function supplyCard(id, ico, title, note, color, groups) {
+    var body = OWNERS.filter(function (o) { return groups[o[0]] && groups[o[0]].length; }).map(function (o) {
+      var items = groups[o[0]];
+      return '<div class="ogroup o-' + o[0] + '"><div class="owner"><span class="pill">' + o[1] + '</span><h3>' + o[2] + '</h3><span class="count">' + items.length + ' items</span></div>' +
+        listHTML(id, items) + '</div>';
+    }).join("");
+    return card("sec-" + id, ico, title, note, color, body);
+  }
+
+  function supplyBand() {
+    return '<div class="band"><h2>Supplies</h2><p>Every supply category is split by who is bringing it.</p><div class="legend">' +
+      '<div class="o-matt"><span class="pill">Matt</span>Matt will bring</div>' +
+      '<div class="o-steph"><span class="pill">Steph</span>Steph will bring</div>' +
+      '<div class="o-both"><span class="pill">Both</span>Shared by both of us</div>' +
+      '<div class="o-byo"><span class="pill">BYO</span>Everyone packs their own</div></div></div>';
+  }
+
+  function aiCard() {
+    var body = AI.map(function (g, gi) {
+      return '<div class="ai-group"><h3>' + g.title + '</h3>' + (g.note ? '<p class="card-note">(' + g.note + ')</p>' : "") +
+        listHTML("ai" + gi, g.items.map(function (p) { return I("<b>" + p[0] + "</b>", "", {}); }).map(function (it, i) {
+          it.n = g.items[i][0]; it.q = ""; it.why = g.items[i][1]; return it;
+        }), "one") + '</div>';
+    }).join("");
+    return card("sec-ai", "i-sparkles", "AI Checklist", "Extra considerations to review against the lists above.", "#4b5bd1", body);
+  }
+
+  var app = document.getElementById("app");
+  app.innerHTML =
+    mealPlan() +
+    groceryCard() +
+    supplyBand() +
+    supplyCard("cooking", "i-pot", "Cooking Supplies", "", "#c8403a", COOKING) +
+    supplyCard("shelter", "i-tent", "Shelter and Sleeping System", "", "#2a63c4", SHELTER) +
+    supplyCard("hygiene", "i-drop", "Personal Hygiene", "", "#138f93", HYGIENE) +
+    supplyCard("clothing", "i-shirt", "Clothing", "Does not count clothes on Day 1. The plan gives no owner, so each of us packs our own.", "#7b4fc9", CLOTHING) +
+    supplyCard("survival", "i-compass", "Survival Supplies", "", "#b5800c", SURVIVAL) +
+    aiCard();
+
+  /* AI checklist rows: the label is the bold lead-in, the description sits below it */
+  Array.prototype.forEach.call(document.querySelectorAll("#sec-ai .why"), function (el) { el.style.fontSize = "14.5px"; });
+
+  /* ================= Jump links ================= */
+  var NAV = [
+    ["sec-meal", "i-grill", "Meal Plan", "#d9661a"], ["sec-grocery", "i-cart", "Grocery List", "#2f8a4f"],
+    ["sec-cooking", "i-pot", "Cooking", "#c8403a"], ["sec-shelter", "i-tent", "Shelter", "#2a63c4"],
+    ["sec-hygiene", "i-drop", "Hygiene", "#138f93"], ["sec-clothing", "i-shirt", "Clothing", "#7b4fc9"],
+    ["sec-survival", "i-compass", "Survival", "#b5800c"], ["sec-ai", "i-sparkles", "AI Checklist", "#4b5bd1"]
+  ];
+  var chips = document.getElementById("chips");
+  chips.innerHTML = NAV.map(function (n) {
+    return '<a href="#' + n[0] + '" data-go="' + n[0] + '" style="--c:' + n[3] + '">' + icon(n[1]) + n[2] + '</a>';
+  }).join("");
+  chips.addEventListener("click", function (e) {
+    var a = e.target.closest("a[data-go]"); if (!a) return;
+    e.preventDefault();
+    var t = document.getElementById(a.getAttribute("data-go"));
+    if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  /* ================= Progress and checking ================= */
+  var label = document.getElementById("progressLabel"), fill = document.getElementById("progressFill");
+  function updateProgress() {
+    var all = document.querySelectorAll("input[data-id]"), done = 0;
+    for (var i = 0; i < all.length; i++) if (all[i].checked) done++;
+    label.textContent = done + " of " + all.length + " checked";
+    fill.style.width = (all.length ? (done / all.length) * 100 : 0) + "%";
+  }
+  document.addEventListener("change", function (e) {
+    var el = e.target;
+    if (!el.matches || !el.matches("input[data-id]")) return;
+    var id = el.getAttribute("data-id");
+    if (el.checked) state[id] = 1; else delete state[id];
+    save(); updateProgress();
+  });
+
+  var resetBtn = document.getElementById("resetBtn"), armed = false, timer = null;
+  function disarm() { armed = false; resetBtn.textContent = "Clear checks"; resetBtn.classList.remove("armed"); }
+  resetBtn.addEventListener("click", function () {
+    if (!armed) {
+      armed = true; resetBtn.textContent = "Tap again to clear all"; resetBtn.classList.add("armed");
+      timer = setTimeout(disarm, 3500); return;
+    }
+    clearTimeout(timer); disarm();
+    state = {}; save();
+    Array.prototype.forEach.call(document.querySelectorAll("input[data-id]"), function (i) { i.checked = false; });
+    updateProgress();
+  });
+  updateProgress();
+
+  /* ================= Night sky: seeded stars and sparkles ================= */
+  function rng(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; var t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  var r = rng(2026), field = document.getElementById("starfield"), html = "";
+  for (var i = 0; i < 120; i++) {
+    var size = r() < .14 ? 3 : (r() < .5 ? 2 : 1.5);
+    html += '<i class="star' + (r() < .4 ? " tw" : "") + '" style="left:' + (r() * 100).toFixed(2) + '%;top:' + (r() * 62).toFixed(2) + '%;width:' + size + 'px;height:' + size + 'px;opacity:' + (.4 + r() * .6).toFixed(2) + ';animation-delay:-' + (r() * 4).toFixed(2) + 's"></i>';
+  }
+  var sparks = [[6, 17, 30], [15, 40, 17], [3, 46, 12], [24, 11, 15], [33, 5, 11], [67, 7, 12], [77, 14, 19], [87, 27, 28], [94, 46, 14], [84, 50, 12], [46, 3, 12], [58, 9, 10], [11, 8, 12], [92, 12, 11]];
+  sparks.forEach(function (s, k) {
+    html += '<svg class="spark' + (k % 2 ? " tw" : "") + '" viewBox="0 0 24 24" style="left:' + s[0] + '%;top:' + s[1] + '%;width:' + s[2] + 'px;height:' + s[2] + 'px;animation-delay:-' + (k * .7).toFixed(1) + 's" aria-hidden="true"><use href="#sparkle-shape"/></svg>';
+  });
+  field.insertAdjacentHTML("beforeend", html);
+})();
+if ("serviceWorker" in navigator) { window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); }); }
+</script>
+</body>
+</html>

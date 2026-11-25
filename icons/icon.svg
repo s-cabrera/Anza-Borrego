@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d2461"/><stop offset=".6" stop-color="#2a64c8"/><stop offset="1" stop-color="#7dbcf4"/></linearGradient>
+<radialGradient id="glow"><stop offset="0" stop-color="#ffb347" stop-opacity=".65"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/></radialGradient>
+<path id="sp" d="M12 0C12.8 7 17 11.2 24 12 17 12.8 12.8 17 12 24 11.2 17 7 12.8 0 12 7 11.2 11.2 7 12 0z"/>
+</defs>
+<rect width="512" height="512" fill="url(#sky)"/>
+<g fill="#fff6cf"><use href="#sp" transform="translate(120 110) scale(2)"/><use href="#sp" transform="translate(330 90) scale(1.4)"/><use href="#sp" transform="translate(240 150) scale(.9)"/><use href="#sp" transform="translate(180 200) scale(.7)"/></g>
+<mask id="mm"><rect width="512" height="512" fill="#fff"/><circle cx="386" cy="140" r="27" fill="#000"/></mask><circle cx="370" cy="150" r="30" fill="#fff3c4" mask="url(#mm)"/>
+<path d="M0 360 L120 300 L230 350 L340 300 L450 350 L512 320 V512 H0Z" fill="#163c86"/>
+<path d="M0 395 Q256 380 512 395 V512 H0Z" fill="#0b1c42"/>
+<circle cx="320" cy="360" r="110" fill="url(#glow)"/>
+<path d="M120 395 L190 305 L260 395Z" fill="#e48a3b"/><path d="M120 395 L190 305 L190 395Z" fill="#f4b560"/><path d="M170 395 L190 350 L210 395Z" fill="#2f2018"/>
+<path d="M320 300 C334 326 352 338 348 360 C345 382 295 382 292 360 C288 338 306 328 320 300Z" fill="#f5821f"/>
+<path d="M320 328 C329 342 338 349 335 362 C333 372 307 372 305 362 C303 350 312 343 320 328Z" fill="#ffc247"/>
+<path d="M290 392 L350 378 M290 378 L350 392" stroke="#5a3a22" stroke-width="12" stroke-linecap="round"/>
+<g transform="translate(430 400) scale(1.1)"><path d="M0 -112 L26 -70 L12 -70 L34 -38 L14 -38 L40 -10 L-40 -10 L-14 -38 L-34 -38 L-12 -70 L-26 -70Z" fill="#0f3f33"/><path d="M0 -112 L26 -70 L12 -70 L34 -38 L14 -38 L40 -10 H0Z" fill="#17624c"/></g>
+<g transform="translate(60 405) scale(.9)"><path d="M0 -112 L26 -70 L12 -70 L34 -38 L14 -38 L40 -10 L-40 -10 L-14 -38 L-34 -38 L-12 -70 L-26 -70Z" fill="#0f3f33"/><path d="M0 -112 L26 -70 L12 -70 L34 -38 L14 -38 L40 -10 H0Z" fill="#17624c"/></g>
+</svg>
